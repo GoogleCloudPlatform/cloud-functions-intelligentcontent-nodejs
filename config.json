@@ -1,0 +1,16 @@
+{
+  "VISION_TOPIC": "projects/[PROJECT-ID]/topics/visionapiservice",
+  "VIDEOINTELLIGENCE_TOPIC": "projects/[PROJECT-ID]/topics/videointelligenceservice",
+  "BIGQUERY_TOPIC": "projects/[PROJECT-ID]/topics/bqinsert",
+  "REJECTED_BUCKET": "[FLAGGED_BUCKET_NAME]",
+  "RESULT_BUCKET": "[FILTERED_BUCKET_NAME]",
+  "DATASET_ID": "[DATASET_ID]",
+  "TABLE_NAME": "[TABLE_NAME]",
+  "GCS_AUTH_BROWSER_URL_BASE": "https://storage.cloud.google.com/" ,
+  "API_Constants": {
+  	"ADULT" : "adult",
+  	"VIOLENCE" : "violence",
+  	"SPOOF" : "spoof",
+  	"MEDICAL" : "medical"
+  }
+}

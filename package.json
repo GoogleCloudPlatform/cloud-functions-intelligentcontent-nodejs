@@ -1,0 +1,38 @@
+{
+  "name": "cloud-functions-intelligentcontent-nodejs",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "Google Inc.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleCloudPlatform/cloud-functions-intelligentcontent-nodejs.git"
+  },
+  "engines": {
+    "node": ">=4.3.2"
+  },
+  "scripts": {
+    "test": "ava -T 20s --verbose test/*.test.js"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "0.9.6",
+    "@google-cloud/pubsub": "^0.13.0",
+    "@google-cloud/storage": "^1.2.1",
+    "@google-cloud/video-intelligence": "^0.3.0",
+    "@google-cloud/vision": "^0.12.0",
+    "ava": "^0.22.0",
+    "lint": "^1.1.2",
+    "safe-buffer": "5.1.0",
+    "sinon": "^3.2.1"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^1.4.15",
+    "ava": "0.21.0",
+    "proxyquire": "1.8.0",
+    "sinon": "3.0.0"
+  },
+  "cloud-repo-tools": {
+    "requiresKeyFile": true,
+    "requiresProjectId": true
+  }
+}

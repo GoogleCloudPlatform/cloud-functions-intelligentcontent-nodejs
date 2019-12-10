@@ -52,7 +52,7 @@ function publishResult (topicName, data) {
  */
 exports.GCStoPubsub = function GCStoPubsub (event) {
   const eventData = event.data;
-  const jsonData = Buffer.from(eventData.data, 'base64').toString();
+  const jsonData = Buffer.from(eventData, 'base64').toString();
 
   var jsonObj = JSON.parse(jsonData);
 
@@ -136,7 +136,7 @@ exports.GCStoPubsub = function GCStoPubsub (event) {
 
 exports.insertIntoBigQuery = function insertIntoBigQuery(event){
   
-  const reqData = Buffer.from(event.data.data, 'base64').toString();
+  const reqData = Buffer.from(event.data, 'base64').toString();
   const reqDataObj = JSON.parse(reqData);
   console.info(reqDataObj);
 
@@ -190,7 +190,7 @@ exports.insertIntoBigQuery = function insertIntoBigQuery(event){
  * @param {object} event The Cloud Functions event which contains a message with the GCS file details
  */
 exports.visionAPI = function visionAPI (event) {
-  const reqData = Buffer.from(event.data.data, 'base64').toString();
+  const reqData = Buffer.from(event.data, 'base64').toString();
   const reqDataObj = JSON.parse(reqData);
   console.info(reqData);
   var bqInsertObj = {};
@@ -314,7 +314,7 @@ exports.visionAPI = function visionAPI (event) {
  */
 exports.videoIntelligenceAPI = function videoIntelligenceAPI (event) 
 {
-  const reqData = Buffer.from(event.data.data, 'base64').toString();
+  const reqData = Buffer.from(event.data, 'base64').toString();
   const reqDataObj = JSON.parse(reqData);
   console.info(reqData);
   var bqInsertObj = {};

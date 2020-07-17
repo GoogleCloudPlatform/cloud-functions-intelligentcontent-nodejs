@@ -20,10 +20,10 @@
     "@google-cloud/storage": "5.1.2",
     "@google-cloud/video-intelligence": "3.0.1",
     "@google-cloud/vision": "2.1.1",
-    "safe-buffer": "5.2.1",
+    "safe-buffer": "5.2.1"
   },
   "devDependencies": {
-    "sinon": "^3.2.1"
+    "sinon": "^3.2.1",
     "lint": "^1.1.2",
     "ava": "3.10.1",
     "@google-cloud/nodejs-repo-tools": "^1.4.15",

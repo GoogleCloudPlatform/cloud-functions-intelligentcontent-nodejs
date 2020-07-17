@@ -17,15 +17,15 @@
 const config = require('./config.json');
 
 // Get a reference to the Cloud Storage component
-const storage = require('@google-cloud/storage')();
+const { storage } = require('@google-cloud/storage');
 // Get a reference to the Pub/Sub component
-const pubsub = require('@google-cloud/pubsub')();
+const { pubsub } = require('@google-cloud/pubsub');
 // Get a reference to the Cloud Vision API component
-const vision = require('@google-cloud/vision')();
+const { vision } = require('@google-cloud/vision');
 // Get a reference to the Cloud Video Intelligence API component
-const video = require('@google-cloud/video-intelligence')();
+const { video } = require('@google-cloud/video-intelligence');
 // Get a reference to the BigQuery API component
-const bigquery = require('@google-cloud/bigquery')();
+const { bigquery } = require('@google-cloud/bigquery');
 
 const Buffer = require('safe-buffer').Buffer;
 

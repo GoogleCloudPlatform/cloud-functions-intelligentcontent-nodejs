@@ -15,7 +15,7 @@
     "test": "ava -T 20s --verbose test/*.test.js"
   },
   "dependencies": {
-    "request": "2.88.2",
+    "grpc": "1.24.3",
     "@google-cloud/bigquery": "0.9.6",
     "@google-cloud/pubsub": "^0.13.0",
     "@google-cloud/storage": "^1.2.1",

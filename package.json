@@ -9,24 +9,23 @@
     "url": "https://github.com/GoogleCloudPlatform/cloud-functions-intelligentcontent-nodejs.git"
   },
   "engines": {
-    "node": ">=4.3.2"
+    "node": ">=10"
   },
   "scripts": {
     "test": "ava -T 20s --verbose test/*.test.js"
   },
   "dependencies": {
-    "grpc": "1.24.3",
-    "@google-cloud/bigquery": "0.9.6",
-    "@google-cloud/pubsub": "^0.13.0",
-    "@google-cloud/storage": "^1.2.1",
-    "@google-cloud/video-intelligence": "^0.3.0",
-    "@google-cloud/vision": "^0.12.0",
-    "ava": "^0.22.0",
-    "lint": "^1.1.2",
-    "safe-buffer": "5.1.0",
-    "sinon": "^3.2.1"
+    "@google-cloud/bigquery": "5.0.1",
+    "@google-cloud/pubsub": "2.2.0",
+    "@google-cloud/storage": "5.1.2",
+    "@google-cloud/video-intelligence": "3.0.1",
+    "@google-cloud/vision": "2.1.1",
+    "safe-buffer": "5.2.1",
   },
   "devDependencies": {
+    "sinon": "^3.2.1"
+    "lint": "^1.1.2",
+    "ava": "3.10.1",
     "@google-cloud/nodejs-repo-tools": "^1.4.15",
     "proxyquire": "1.8.0"
   },

@@ -15,6 +15,7 @@
     "test": "ava -T 20s --verbose test/*.test.js"
   },
   "dependencies": {
+    "request": "2.88.2",
     "@google-cloud/bigquery": "0.9.6",
     "@google-cloud/pubsub": "^0.13.0",
     "@google-cloud/storage": "^1.2.1",
@@ -27,9 +28,7 @@
   },
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "^1.4.15",
-    "ava": "0.21.0",
-    "proxyquire": "1.8.0",
-    "sinon": "3.0.0"
+    "proxyquire": "1.8.0"
   },
   "cloud-repo-tools": {
     "requiresKeyFile": true,

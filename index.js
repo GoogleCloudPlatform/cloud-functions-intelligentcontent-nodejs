@@ -16,16 +16,12 @@
 // a configuration file defining the pubsub topics and BigQuery details
 const config = require("./config.json");
 
-// Get a reference to the Cloud Storage component
-const { storage } = require("@google-cloud/storage");
-// Get a reference to the Pub/Sub component
-const { pubsub } = require("@google-cloud/pubsub");
-// Get a reference to the Cloud Vision API component
-const { vision } = require("@google-cloud/vision");
-// Get a reference to the Cloud Video Intelligence API component
-const { video } = require("@google-cloud/video-intelligence");
-// Get a reference to the BigQuery API component
-const { bigquery } = require("@google-cloud/bigquery");
+// GCP libraries we will need for our functions
+const { Storage } = require("@google-cloud/storage");
+const { PubSub } = require('@google-cloud/pubsub');
+const { Vision } = require("@google-cloud/vision");
+const { Video } = require("@google-cloud/video-intelligence");
+const { BigQuery } = require("@google-cloud/bigquery");
 
 const Buffer = require("safe-buffer").Buffer;
 
@@ -46,6 +42,7 @@ const videoSafeSearchMap = [
  * @param {object} data The message data to publish.
  */
 function publishResult(topicName, data) {
+  const pubsub = new PubSub();
   return pubsub
     .topic(topicName)
     .get({ autoCreate: true })
@@ -219,6 +216,7 @@ exports.insertIntoBigQuery = function insertIntoBigQuery(event) {
       }
 
       console.log(`Sending BigQuery insert request`);
+      const bigquery = new BigQuery();
       const bqDataset = bigquery.dataset(config.DATASET_ID);
       const bqTable = bqDataset.table(config.TABLE_NAME);
 
@@ -318,6 +316,7 @@ exports.visionAPI = function visionAPI(event) {
 
       console.info(`Vision request: ${JSON.stringify(request)}`);
       console.log(`Sending vision request`);
+      const vision = new Vision.ImageAnnotatorClient();
       return vision.annotateImage(request);
     })
     .then((results) => {
@@ -477,6 +476,7 @@ exports.videoIntelligenceAPI = function videoIntelligenceAPI(event) {
       );
 
       // Execute request
+      const video = new Video.VideoIntelligenceServiceClient();
       return video.annotateVideo(request);
     })
     .then((results) => {
@@ -613,6 +613,7 @@ function addALabel(label, requestObj) {
  * @param {String} destFile The name of the destination file
  */
 function moveFile(srcBucket, srcFile, destBucket, destFile) {
+  const storage = new Storage();
   const newFileLoc = "gs://" + destBucket + "/" + destFile;
   return storage
     .bucket(srcBucket)

@@ -1,11 +1,11 @@
 {
-  "VISION_TOPIC": "projects/[PROJECT-ID]/topics/visionapiservice",
-  "VIDEOINTELLIGENCE_TOPIC": "projects/[PROJECT-ID]/topics/videointelligenceservice",
-  "BIGQUERY_TOPIC": "projects/[PROJECT-ID]/topics/bqinsert",
-  "REJECTED_BUCKET": "[FLAGGED_BUCKET_NAME]",
-  "RESULT_BUCKET": "[FILTERED_BUCKET_NAME]",
-  "DATASET_ID": "[DATASET_ID]",
-  "TABLE_NAME": "[TABLE_NAME]",
+  "VISION_TOPIC": "projects/picsart-video-achitecture/topics/visionapiservice",
+  "VIDEOINTELLIGENCE_TOPIC": "projects/picsart-video-achitecture/topics/videointelligenceservice",
+  "BIGQUERY_TOPIC": "projects/picsart-video-achitecture/topics/bqinsert",
+  "REJECTED_BUCKET": "picsart-flagged-images-and-videos",
+  "RESULT_BUCKET": "picsart-filtered-images-and-videos",
+  "DATASET_ID": "intelligentcontentfilter",
+  "TABLE_NAME": "filtered_content",
   "GCS_AUTH_BROWSER_URL_BASE": "https://storage.cloud.google.com/" ,
   "API_Constants": {
   	"ADULT" : "adult",

@@ -39,7 +39,7 @@ const videoSafeSearchMap = [ "UNKNOWN","VERY_UNLIKELY","UNLIKELY","POSSIBLE","LI
  * @param {object} data The message data to publish.
  */
 function publishResult (topicName, data) {
-  console.log("Topic: " + topic);
+  console.log("Topic: " + topicName);
   console.log("Data: \n" + data)
   //const pubSubClient = new PubSub();
   return pubsub.topic(topicName).get({ autoCreate: true })
@@ -55,15 +55,9 @@ function publishResult (topicName, data) {
  */
 exports.GCStoPubsub = function GCStoPubsub (event) {
   const eventData = event.data;
-  const jsonData = Buffer.from(eventData, 'base64').toString();
-  
-  //var jsonObj = Buffer.from(JSON.parse(jsonData));
-  var jsonObj = Buffer.from(JSON.stringify(jsonData));
+  const jsonData = Buffer.from(eventData, "base64").toString();
 
-  console.log("jsonObj.bucket and type "+ jsonObj.bucket + 
-  "\ntype is buffer?: " + Buffer.isBuffer(jsonObj));
-
-  console.log("jsonObj:\n" + jsonObj.toString("utf-8"));
+  var jsonObj = JSON.parse(jsonData);
 
   return Promise.resolve()
     .then(() => {
@@ -87,6 +81,7 @@ exports.GCStoPubsub = function GCStoPubsub (event) {
 
       console.log(`Received name: ${jsonObj.name} and bucket: ${jsonObj.bucket} and contentType: ${jsonObj.contentType}`);
 
+      console.log("jsonObj:\n" + jsonObj);
       //move the current file to the results bucket
       return moveFile(jsonObj.bucket,jsonObj.name,config.RESULT_BUCKET,jsonObj.name)
       .then(() => {
@@ -466,7 +461,9 @@ function addALabel(label,requestObj) {
  * @param {String} destFile The name of the destination file
  */
 function moveFile(srcBucket, srcFile, destBucket, destFile) {
+    const {Storage} = require('@google-cloud/storage');
     const newFileLoc = "gs://"+destBucket+"/"+destFile;
+    const storage = new Storage();
     return storage.bucket(srcBucket).file(srcFile).move(newFileLoc)
     .then(() => {
       console.log("gs://"+srcBucket+"/"+srcFile +" moved to gs://"+destBucket+"/"+destFile); 

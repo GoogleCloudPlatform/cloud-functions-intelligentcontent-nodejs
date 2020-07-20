@@ -41,7 +41,7 @@ const videoSafeSearchMap = [ "UNKNOWN","VERY_UNLIKELY","UNLIKELY","POSSIBLE","LI
 function publishResult (topicName, data) {
   console.log("Topic: " + topicName);
   console.log("Data: \n" + data)
-  //const pubSubClient = new PubSub();
+  const pubSubClient = new PubSub();
   return pubsub.topic(topicName).get({ autoCreate: true })
     .then(([topic]) => topic.publish(data));
 }

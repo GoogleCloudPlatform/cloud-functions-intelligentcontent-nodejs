@@ -39,8 +39,6 @@ const videoSafeSearchMap = [ "UNKNOWN","VERY_UNLIKELY","UNLIKELY","POSSIBLE","LI
  * @param {object} data The message data to publish.
  */
 function publishResult (topicName, data) {
-  console.log("Topic: " + topicName);
-  console.log("Data: \n" + JSON.stringify(data));
   const {PubSub} = require('@google-cloud/pubsub');
   const pubsub = new PubSub();
   var buf = Buffer.from(JSON.stringify(data));

@@ -40,10 +40,12 @@ const videoSafeSearchMap = [ "UNKNOWN","VERY_UNLIKELY","UNLIKELY","POSSIBLE","LI
  */
 function publishResult (topicName, data) {
   console.log("Topic: " + topicName);
-  console.log("Data: \n" + data)
-  const pubSubClient = new PubSub();
+  console.log("Data: \n" + JSON.stringify(data));
+  const {PubSub} = require('@google-cloud/pubsub');
+  const pubsub = new PubSub();
+  var buf = Buffer.from(JSON.stringify(data));
   return pubsub.topic(topicName).get({ autoCreate: true })
-    .then(([topic]) => topic.publish(data));
+    .then(([topic]) => topic.publish(buf));
 }
 // [END functions_publishResult]
 

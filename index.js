@@ -81,7 +81,6 @@ exports.GCStoPubsub = function GCStoPubsub (event) {
 
       console.log(`Received name: ${jsonObj.name} and bucket: ${jsonObj.bucket} and contentType: ${jsonObj.contentType}`);
 
-      console.log("jsonObj:\n" + jsonObj);
       //move the current file to the results bucket
       return moveFile(jsonObj.bucket,jsonObj.name,config.RESULT_BUCKET,jsonObj.name)
       .then(() => {
@@ -123,7 +122,7 @@ exports.GCStoPubsub = function GCStoPubsub (event) {
     })
     .then(() => {
       
-      console.log(`File ${jsonObj.name} processed.`);
+      console.log(`File ${jsonObj.name} processed by image or video API.`);
 
     });
 };
@@ -139,7 +138,7 @@ exports.GCStoPubsub = function GCStoPubsub (event) {
  */
 
 exports.insertIntoBigQuery = function insertIntoBigQuery(event){
-  
+  console.log("Enter bqinsert function")
   const reqData = Buffer.from(event.data, 'base64').toString();
   const reqDataObj = JSON.parse(reqData);
   console.info(reqDataObj);
@@ -194,6 +193,14 @@ exports.insertIntoBigQuery = function insertIntoBigQuery(event){
  * @param {object} event The Cloud Functions event which contains a message with the GCS file details
  */
 exports.visionAPI = function visionAPI (event) {
+  console.log("Start visionAPI function");
+  
+  // Imports the Google Cloud client library
+  const vision_api = require('@google-cloud/vision');
+
+  // Creates a client
+  const vision = new vision_api.ImageAnnotatorClient();
+  
   const reqData = Buffer.from(event.data, 'base64').toString();
   const reqDataObj = JSON.parse(reqData);
   console.info(reqData);
@@ -294,6 +301,7 @@ exports.visionAPI = function visionAPI (event) {
       }
       
       console.info(`bqInsertObj: ${JSON.stringify(bqInsertObj)}`);
+      console.log("Publishing to bqinsert pubsub");
       return publishResult(config.BIGQUERY_TOPIC,bqInsertObj);
 
 

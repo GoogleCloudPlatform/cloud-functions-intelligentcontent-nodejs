@@ -139,6 +139,11 @@ exports.GCStoPubsub = function GCStoPubsub (event) {
 
 exports.insertIntoBigQuery = function insertIntoBigQuery(event){
   console.log("Enter bqinsert function")
+
+  // Get a reference to the BigQuery API component
+  const { BigQuery } = require('@google-cloud/bigquery');
+  const bigquery = new  BigQuery();
+
   const reqData = Buffer.from(event.data, 'base64').toString();
   const reqDataObj = JSON.parse(reqData);
   console.info(reqDataObj);
@@ -326,6 +331,12 @@ exports.visionAPI = function visionAPI (event) {
  */
 exports.videoIntelligenceAPI = function videoIntelligenceAPI (event) 
 {
+  // Imports the Google Cloud Video Intelligence library
+  const videoIntelligence = require('@google-cloud/video-intelligence');
+
+  // Creates a client
+  const video = new videoIntelligence.VideoIntelligenceServiceClient();
+
   const reqData = Buffer.from(event.data, 'base64').toString();
   const reqDataObj = JSON.parse(reqData);
   console.info(reqData);
